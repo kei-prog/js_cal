@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
 const showCalendar = (year, month) => {
-  const monthName = new Date(year, month - 1).toLocaleString('en-US', { month: 'long' });
+  const firstDate = new Date(year, month - 1, 1);
+  const monthName = firstDate.toLocaleString('en-US', { month: 'long' });
   const header = `${monthName} ${year}`;
   const padding = Math.floor((20 - header.length) / 2);
 
   console.log(" ".repeat(padding) + header + " ".repeat(padding));
   console.log("Su Mo Tu We Th Fr Sa");
 
-  const firstDay = new Date(year, month - 1, 1).getDay();
+  const firstDay = firstDate.getDay();
   let currentDay = 1;
   let dateStr = " ".repeat(firstDay * 3);
 
